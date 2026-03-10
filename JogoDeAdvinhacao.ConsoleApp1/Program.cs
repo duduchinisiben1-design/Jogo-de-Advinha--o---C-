@@ -1,13 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
 using System;
-using System.Runtime.InteropServices;
+
 using System.Security.Cryptography;
 
 while (true == true)
 {
     int[] numerosDigitados = new int[100];
-
     int contadorDeNumerosDigitados = 0;
+    int pontuacao = 100;
 
     Console.Clear();
     Console.WriteLine("-----------------------------------");
@@ -65,7 +66,7 @@ while (true == true)
 
         if (contadorDeNumerosDigitados < numerosDigitados.Length)
         {
-            numerosDigitados[contadorDeNumerosDigitados] = numerosDigitados;
+            numerosDigitados[contadorDeNumerosDigitados] = numeroDigitado;
 
             contadorDeNumerosDigitados++;
         }
@@ -73,7 +74,7 @@ while (true == true)
 
         for (int contadorNumeros = 0; contadorNumeros < numerosDigitados.Length; contadorNumeros++)
         {
-            if (numerosDigitados[contadorNumeros] == numerosDigitados)
+            if (numerosDigitados[contadorNumeros] == numeroDigitado)
             {
                 numeroRepitido = true;
                 break;
@@ -115,11 +116,33 @@ while (true == true)
 
         }
 
+        int diferencaNumerica = Math.Abs(numeroAleatorio - numeroDigitado);
+
+        if (diferencaNumerica >= 10)
+        {
+            pontuacao -= 100;
+        }
+        else if (diferencaNumerica >= 5)
+        {
+            pontuacao -= 50;
+        }
+        else
+        {
+            pontuacao -= 20;
+        }
+
         if (tentativas == tentativasMaximas)
         {
             Console.WriteLine($"Você usou toda as suas tentativas! o numero era {numeroAleatorio}");
             Console.WriteLine("--------------------------------------------");
+            break;
         }
+
+            Console.WriteLine("sua pontuação é: " + pontuacao);
+            Console.WriteLine("-----------------------------------");
+            Console.Write("Clique ENTER para prosseguir...");
+            Console.ReadLine();
+
 
 
     }
@@ -127,7 +150,7 @@ while (true == true)
     Console.WriteLine("Deseja continuar? (S/N): ");
     string? opcaoContinuar = Console.ReadLine();
 
-    if (opcaoContinuar.ToUpper() != "S")
+    if (opcaoContinuar?.ToUpper() != "S")
     {
         Console.WriteLine("Programa finalizado!!");
         break;
