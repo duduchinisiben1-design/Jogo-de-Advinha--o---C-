@@ -62,7 +62,7 @@ class Program
     {
          int[] numerosDigitados = new int[tentativasMaximas];
             int contadorDeNumerosDigitados = 0;
-            int pontuacao = 100;
+            int pontuacao = 1000;
 
             int numeroAleatorio = RandomNumberGenerator.GetInt32(1, numeroMaximo + 1);
             for (int tentativas = 1; tentativas <= tentativasMaximas; tentativas++)
@@ -77,12 +77,7 @@ class Program
 
                 int numeroDigitado = Convert.ToInt32(chute);
 
-                if (contadorDeNumerosDigitados < numerosDigitados.Length)
-                {
-                    numerosDigitados[contadorDeNumerosDigitados] = numeroDigitado;
-
-                    contadorDeNumerosDigitados++;
-                }
+                
                 bool numeroRepitido = false;
 
                 for (int contadorNumeros = 0; contadorNumeros < numerosDigitados.Length; contadorNumeros++)
@@ -105,6 +100,13 @@ class Program
                     tentativas--;
 
                     continue;
+                }
+
+                if (contadorDeNumerosDigitados < numerosDigitados.Length)
+                {
+                    numerosDigitados[contadorDeNumerosDigitados] = numeroDigitado;
+
+                    contadorDeNumerosDigitados++;
                 }
 
                 if (numeroDigitado == numeroAleatorio)
